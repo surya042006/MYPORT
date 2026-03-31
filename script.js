@@ -1,17 +1,17 @@
-const form = document.getElementById("form");
+const form = document.getElementById("contactForm");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const data = {
-    name: document.getElementById("name").value,
-    phone: document.getElementById("phone").value,
-    email: document.getElementById("email").value,
-    message: document.getElementById("message").value
+    name: form.name.value,
+    phone: form.phone.value,
+    email: form.email.value,
+    message: form.message.value
   };
 
   try {
-    const res = await fetch("http://localhost:3000/add", {
+    const res = await fetch("/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -25,10 +25,11 @@ form.addEventListener("submit", async (e) => {
       alert("Message Sent ✅");
       form.reset();
     } else {
-      alert("Error ❌");
+      alert("Server error ❌");
     }
 
   } catch (err) {
-    alert("Server error ❌");
+    console.error(err);
+    alert("Error connecting server ❌");
   }
 });
