@@ -18,25 +18,24 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// ✅ MySQL Connection (Railway)
-const db = mysql.createConnection({
-  host: "mysql.railway.internal",
-  user: "root",
-  password: "pftKCDfYZLmafezkTMMsXuJXeeiYwSAj",
-  database: "railway",
-  port: 3306
-});
+
+// ✅ PASTE YOUR REAL MYSQL URL HERE
+const db = mysql.createConnection(
+  "mysql://root:pftKCDfYZLmafezkTMMsXuJXeeiYwSAj@interchange.proxy.rlwy.net:55972/railway"
+);
+
 
 // Connect DB
 db.connect(err => {
   if (err) {
-    console.log("❌ DB Error:", err);
+    console.log("❌ DB ERROR:", err);
   } else {
     console.log("✅ MySQL Connected");
   }
 });
 
-// ✅ API Route
+
+// API
 app.post("/add", (req, res) => {
   const { name, phone, email, message } = req.body;
 
@@ -46,7 +45,7 @@ app.post("/add", (req, res) => {
 
   const sql = "INSERT INTO contacts (name, phone, email, message) VALUES (?, ?, ?, ?)";
 
-  db.query(sql, [name, phone, email, message], (err, result) => {
+  db.query(sql, [name, phone, email, message], (err) => {
     if (err) {
       console.log("❌ Insert Error:", err);
       return res.json({ success: false });
@@ -55,6 +54,7 @@ app.post("/add", (req, res) => {
     res.json({ success: true });
   });
 });
+
 
 // Server
 const PORT = process.env.PORT || 3000;
