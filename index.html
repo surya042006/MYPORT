@@ -1,71 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Surya S Portfolio</title>
+  <title>Surya Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- 🔥 HERO -->
-<section class="hero">
+<nav>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#certifications">Certifications</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="container">
+
   <h1>Surya S</h1>
-  <p>BCA Student | Bca Developer</p>
-</section>
+  <p>BCA Student | Web Developer</p>
 
-<!-- 🧠 ABOUT -->
-<section class="about">
-  <h2>About Me</h2>
-  <p>
-    I am a BCA student from Kristu Jayanti College with a strong interest in
-    Artificial Intelligence and Machine Learning. I enjoy building real-world
-    projects and continuously improving my development skills.
-  </p>
-</section>
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I am a BCA student from Kristu Jayanti College with strong interest in 
+      Artificial Intelligence and Web Development. I enjoy building real-world projects.
+    </p>
+  </section>
 
-<!-- ⚡ SKILLS -->
-<section class="skills">
-  <h2>Skills</h2>
-  <ul>
-    <li>Programming Languages</li>
-    <li>Google Colab</li>
-    <li>Team Management</li>
-    <li>Leadership</li>
-    <li>Critical Thinking</li>
-    <li>Applied Machine Learning</li>
-  </ul>
-</section>
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>Programming Languages</li>
+      <li>Leadership</li>
+      <li>Critical Thinking</li>
+      <li>Machine Learning</li>
+    </ul>
+  </section>
 
-<!-- 🏆 CERTIFICATIONS -->
-<section class="certifications">
-  <h2>Certifications</h2>
-  <ul>
-    <li>Microsoft AI Certification</li>
-    <li>IBM Data Science</li>
-    <li>Celonis Process Mining</li>
-    <li>Learnathon Program</li>
-    <li>Intel Digital India</li>
-  </ul>
-</section>
+  <!-- Certifications -->
+  <section id="certifications">
+    <h2>Certifications</h2>
+    <ul>
+      <li>Microsoft AI Certification</li>
+      <li>IBM Data Science</li>
+      <li>Celonis Process Mining</li>
+      <li>Learnathon Program</li>
+      <li>Intel Digital India</li>
+    </ul>
+  </section>
 
-<!-- 📩 CONTACT FORM -->
-<section class="contact">
-  <h2>Contact Me</h2>
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Me</h2>
 
-  <form id="form">
-    <input type="text" id="name" placeholder="Your Name" required>
-    <input type="text" id="phone" placeholder="Phone Number" required>
-    <input type="email" id="email" placeholder="Email" required>
+    <input id="name" placeholder="Your Name">
+    <input id="phone" placeholder="Phone Number">
+    <input id="email" placeholder="Email">
     <textarea id="message" placeholder="Your Message"></textarea>
 
-    <button type="submit">Send Message</button>
-  </form>
-</section>
+    <button onclick="sendData()">Send Message</button>
 
-<!-- 📞 INFO -->
-<section class="info">
-  <p>📞 7483089672</p>
-  <p>📧 surya123pps@gmail.com</p>
-</section>
+    <div class="contact-info">
+      <p>📞 7483089672</p>
+      <p>📧 surya123pps@gmail.com</p>
+    </div>
+  </section>
+
+</div>
 
 <script src="script.js"></script>
 

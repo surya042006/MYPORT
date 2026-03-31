@@ -7,55 +7,40 @@ const path = require("path");
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// ✅ Serve frontend (same folder)
+// Serve frontend
 app.use(express.static(__dirname));
 
-// ✅ Home route
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// ✅ MySQL connection
+// MySQL connection
 const db = mysql.createConnection({
-  host: "localhost",      // ⚠️ change for Render later
+  host: "localhost",
   user: "root",
-  password: "Surya@123",  // your password
+  password: "Surya@123",
   database: "portfolio"
 });
 
 db.connect(err => {
-  if (err) {
-    console.log("MySQL Error ❌", err);
-  } else {
-    console.log("MySQL Connected ✅");
-  }
+  if (err) console.log("DB Error ❌", err);
+  else console.log("MySQL Connected ✅");
 });
 
-// ✅ API route
+// API
 app.post("/add", (req, res) => {
   const { name, phone, email, message } = req.body;
 
-  if (!name || !phone || !email || !message) {
-    return res.status(400).json({ success: false });
-  }
-
   const sql = "INSERT INTO contacts (name, phone, email, message) VALUES (?, ?, ?, ?)";
-
-  db.query(sql, [name, phone, email, message], (err, result) => {
-    if (err) {
-      console.log(err);
-      return res.status(500).json({ success: false });
-    }
-
+  
+  db.query(sql, [name, phone, email, message], (err) => {
+    if (err) return res.json({ success: false });
     res.json({ success: true });
   });
 });
 
-// ✅ Start server
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`Server running 🚀`);
-});
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log("Server running 🚀"));

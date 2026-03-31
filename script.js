@@ -1,35 +1,20 @@
-const form = document.getElementById("contactForm");
+async function sendData() {
+  const name = document.getElementById("name").value;
+  const phone = document.getElementById("phone").value;
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+  const res = await fetch("/add", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, phone, email, message })
+  });
 
-  const data = {
-    name: form.name.value,
-    phone: form.phone.value,
-    email: form.email.value,
-    message: form.message.value
-  };
+  const data = await res.json();
 
-  try {
-    const res = await fetch("/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    });
-
-    const result = await res.json();
-
-    if (result.success) {
-      alert("Message Sent ✅");
-      form.reset();
-    } else {
-      alert("Server error ❌");
-    }
-
-  } catch (err) {
-    console.error(err);
-    alert("Error connecting server ❌");
+  if (data.success) {
+    alert("Message Sent ✅");
+  } else {
+    alert("Error ❌");
   }
-});
+}
